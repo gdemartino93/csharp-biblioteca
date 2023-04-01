@@ -141,20 +141,39 @@ namespace csharp_biblioteca
                     {
                         if(item.Stato.ToLower() == "prestato")
                         {
-                            presente = false;
+                            Console.WriteLine("Il libro è fuori per prestito");
                         }
                         else
                         {
                             presente = true;
-                        }
-                        if (presente)
-                        {
+                            Console.WriteLine("Inserisci il nome di chi lo vuole in prestito");
+                            string nomeUtente = Console.ReadLine();
+                            Console.WriteLine("Inserisci il cognome di chi lo vuole in prestito");
+                            string cognomeUtente = Console.ReadLine();
 
+                            foreach(Cliente x in clienti)
+                            {
+                                if( x.Nome.ToLower() == nomeUtente.ToLower() && x.Cognome.ToLower() == cognomeUtente.ToLower())
+                                {
+                                    Cliente cliente = x;
+                                    if(item is Dvd dvd)
+                                    {
+                                        dvdPrestito = dvd;
+                                        Prestito prestito = new Prestito(inizioPrestito, finePrestito, dvdPrestito, cliente);
+                                        prestito.ToString();
+                                       
+                                    }
+                                    if(item is Libro libro)
+                                    {
+                                        libroPrestito = libro;
+                                        Prestito prestito = new Prestito(inizioPrestito, finePrestito, libroPrestito, cliente);
+                                        prestito.ToString();
+                                    }
+                                    
+                                }
+                            }
                         }
-                        else
-                        {
-                            Console.WriteLine("Il titolo è attualmente fuori per prestito");
-                        }
+
                       
                     }
  }
