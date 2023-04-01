@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Documento x = new Libro("asd", "asd",1990,"settore","disponibieò","scaffale","autore",5);
         }
     }
 }
