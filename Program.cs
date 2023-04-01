@@ -1,4 +1,6 @@
-﻿namespace csharp_biblioteca
+﻿using System.Reflection.Metadata;
+
+namespace csharp_biblioteca
 {
     internal class Program
     {
@@ -8,7 +10,7 @@
             List<Documento> documenti = new List<Documento>();
             List<Cliente> clienti = new List<Cliente>();
 
-            Documento libro1 = new Libro("123908", "Harry Potter", 2000, "Fantastico", "Libero", "A1", "Chris col", 200);
+            Documento libro1 = new Libro("123908", "Harry Potter", 2000,"fantasy","prestato","3b","asdasdasd",301);
             Documento libro2 = new Libro("234567", "Il Signore degli Anelli", 1954, "Fantasy", "Bompiani", "B1", "J.R.R. Tolkien", 1000);
             Documento libro3 = new Libro("345678", "1984", 1949, "Distopia", "Mondadori", "C1", "George Orwell",230);
 
@@ -79,45 +81,88 @@
 
                     } while (cercaAltro == 1); // Continua a cercare finché l'utente vuole cercare ancora
                 }
+                if (scelta == 2)
+                {
+                    bool trovato = false;
+                    do
+                    {
+                        Console.WriteLine("Inserisci il titolo");
+                        string titolo = Console.ReadLine();
+
+                        foreach (Documento item in documenti)
+                        {
+                            if (titolo.ToLower() == item.Titolo.ToLower())
+                            {
+                                Console.WriteLine($"{item.Codice} - {item.Titolo} Anno: {item.Anno}, Stato: {item.Stato}, Scaffale: {item.Scaffale}, Autore: {item.Autore}");
+                                if (item is Libro libro)
+                                {
+                                    Console.WriteLine($"Numero pagine: {libro.NumPagine}");
+                                }
+                                if (item is Dvd dvd)
+                                {
+                                    Console.WriteLine($"Durata in minuti: {dvd.Durata}");
+                                }
+                                trovato = true;
+                                break;
+                            }
+                        }
+                        if (trovato == false)
+                        {
+                            Console.WriteLine("Nessun elemento trovato");
+                        }
+                        Console.WriteLine("Vuoi cercare altro?");
+                        Console.WriteLine("[1] Si");
+                        Console.WriteLine("[2] No");
+                        cercaAltro = Convert.ToInt32(Console.ReadLine());
+                    } while (cercaAltro == 1);
+                }
             }
-            if ( scelta == 2 )
+            if (scelta == 2)
             {
                 bool trovato = false;
-                do
-                {
-                    Console.WriteLine("Inserisci il titolo");
-                    string titolo = Console.ReadLine();
+                bool presente  = true;
+                Console.WriteLine("-------------------");
+                Console.WriteLine("Registra prestito");
+                Console.WriteLine("-------------------");
 
-                    foreach (Documento item in documenti)
+                Console.WriteLine("Inizio prestito");
+                string inizioPrestito = Console.ReadLine();
+                Console.WriteLine("Fine prestito");
+                string finePrestito = Console.ReadLine();
+                Console.WriteLine("Inserisci il titolo");
+                string titolo = Console.ReadLine();
+
+                Libro libroPrestito = new Libro("", "", 0, "", "", "", "", 0);
+                Dvd dvdPrestito = new Dvd("", "", 0, "", "", "", "", 0);
+
+                foreach (Documento item in documenti)
+                {
+                    if (titolo.ToLower() == item.Titolo.ToLower())
                     {
-                        if (titolo.ToLower() == item.Titolo.ToLower())
+                        if(item.Stato.ToLower() == "prestato")
                         {
-                            Console.WriteLine($"{item.Codice} - {item.Titolo} Anno: {item.Anno}, Stato: {item.Stato}, Scaffale: {item.Scaffale}, Autore: {item.Autore}");
-                            if (item is Libro libro)
-                            {
-                                Console.WriteLine($"Numero pagine: {libro.NumPagine}");
-                            }
-                            if(item is Dvd dvd)
-                            {
-                                Console.WriteLine($"Durata in minuti: {dvd.Durata}");
-                            }
-                            trovato = true;
-                            break;
+                            presente = false;
                         }
+                        else
+                        {
+                            presente = true;
+                        }
+                        if (presente)
+                        {
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Il titolo è attualmente fuori per prestito");
+                        }
+                      
                     }
-                    if (trovato == false)
-                    {
-                        Console.WriteLine("Nessun elemento trovato");
-                    }
-                    Console.WriteLine("Vuoi cercare altro?");
-                    Console.WriteLine("[1] Si");
-                    Console.WriteLine("[2] No");
-                    cercaAltro = Convert.ToInt32(Console.ReadLine());
-                } while(cercaAltro == 1);
+ }
+                }
 
 
             }
+
 
         }
     }
-}
