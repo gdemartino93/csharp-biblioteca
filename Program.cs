@@ -38,34 +38,46 @@
             Console.WriteLine("[1] Cerca");
             Console.WriteLine("[2] Prendi in prestito");
             Console.WriteLine("[3] Cerca un prestito");
-
+            int cercaAltro = 0;
             int scelta = Convert.ToInt32(Console.ReadLine());
-            if ( scelta == 1)
+
+            if (scelta == 1)
             {
                 Console.WriteLine("[1] Scegli per codice");
                 Console.WriteLine("[2] Scegli per titolo");
+
                 scelta = Convert.ToInt32(Console.ReadLine());
-                if ( scelta == 1)
+
+                if (scelta == 1) // Se l'utente ha scelto "Cerca per codice"
                 {
-                    Console.WriteLine("Inserisci il codice");
-                    string codice = Console.ReadLine();
                     bool trovato = false;
-                    foreach(Documento item in documenti)
+
+                    do
                     {
-                        if( codice.ToLower() == item.Codice.ToLower() )
+                        Console.WriteLine("Inserisci il codice");
+                        string codice = Console.ReadLine();
+
+                        foreach (Documento item in documenti)
                         {
-                            Console.WriteLine($"{item.Codice} - {item.Titolo} Anno: {item.Anno}, Stato: {item.Stato}, Scaffale: {item.Scaffale}, Autore: {item.Autore}");
-                            break;
+                            if (codice.ToLower() == item.Codice.ToLower())
+                            {
+                                Console.WriteLine($"{item.Codice} - {item.Titolo} Anno: {item.Anno}, Stato: {item.Stato}, Scaffale: {item.Scaffale}, Autore: {item.Autore}");
+                                trovato = true; // Imposta la variabile trovato a true
+                                break; // Esci dal ciclo foreach perché hai trovato il documento
+                            }
                         }
-                        else
+
+                        if (!trovato) // Se non hai trovato il documento
                         {
-                            trovato = false;
+                            Console.WriteLine("Nessun elemento trovato");
                         }
-                    }
-                    if (trovato != true)
-                    {
-                        Console.WriteLine("Nessun elemento trovato");
-                    }
+
+                        Console.WriteLine("Vuoi cercare altro?");
+                        Console.WriteLine("[1] Si");
+                        Console.WriteLine("[2] No");
+                        cercaAltro = Convert.ToInt32(Console.ReadLine());
+
+                    } while (cercaAltro == 1); // Continua a cercare finché l'utente vuole cercare ancora
                 }
             }
 
