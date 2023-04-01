@@ -1,38 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace csharp_biblioteca
+﻿public class Documento
 {
-    public abstract class Documento
+    public string Codice { get; set; }
+    public string Titolo { get; }
+
+    public int Anno { get; set; }
+    public string Settore { get; }
+    public string Stato { get; set; }
+    public string Scaffale { get; set; }
+    public string Autore { get; }
+
+    public Documento(string codice, string titolo, int anno, string stato, string settore, string scaffale, string autore)
     {
-        private string codice;
-        private string titolo;
-        private int anno;
-        private string settore;
-        private string stato;
-        private string scaffale;
-        private string autore;
-
-        public string Codice { get; set; }
-        public string Titolo { get; set; }
-        public int Anno { get; set; }
-        public string Settore { get; set; }
-        public string Stato { get; set; }
-        public string Scaffale { get; set; }
-        public string Autore { get; set; }
-
-        public Documento(string codice,string titolo,int anno,string settore, string stato,string scaffale,string autore)
-        {
-            Codice = codice;
-            Titolo = titolo;
-            Anno = anno;
-            Settore = settore;
-            Stato = stato;
-            Scaffale = scaffale;
-            Autore = autore;
-        }
+        Codice = codice;
+        Titolo = titolo;
+        Anno = anno;
+        Stato = stato;
+        Settore = settore;
+        Scaffale = scaffale;
+        Autore = autore;
+    }
+    public override string ToString()
+    {
+        return Titolo + " Codice : " + Codice;
     }
 }
