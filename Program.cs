@@ -10,7 +10,7 @@
 
             Documento libro1 = new Libro("123908", "Harry Potter", 2000, "Fantastico", "Libero", "A1", "Chris col", 200);
             Documento libro2 = new Libro("234567", "Il Signore degli Anelli", 1954, "Fantasy", "Bompiani", "B1", "J.R.R. Tolkien", 1000);
-            Documento libro3 = new Libro("345678", "1984", 1949, "Distopia", "Mondadori", "C1", "George Orwell", 350);
+            Documento libro3 = new Libro("345678", "1984", 1949, "Distopia", "Mondadori", "C1", "George Orwell",230);
 
             //aggiungiamo i libri alla list
             documenti.Add(libro1);
@@ -93,6 +93,14 @@
                         if (titolo.ToLower() == item.Titolo.ToLower())
                         {
                             Console.WriteLine($"{item.Codice} - {item.Titolo} Anno: {item.Anno}, Stato: {item.Stato}, Scaffale: {item.Scaffale}, Autore: {item.Autore}");
+                            if (item is Libro libro)
+                            {
+                                Console.WriteLine($"Numero pagine: {libro.NumPagine}");
+                            }
+                            if(item is Dvd dvd)
+                            {
+                                Console.WriteLine($"Durata in minuti: {dvd.Durata}");
+                            }
                             trovato = true;
                             break;
                         }
