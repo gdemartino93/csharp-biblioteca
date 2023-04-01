@@ -80,6 +80,35 @@
                     } while (cercaAltro == 1); // Continua a cercare finché l'utente vuole cercare ancora
                 }
             }
+            if ( scelta == 2 )
+            {
+                bool trovato = false;
+                do
+                {
+                    Console.WriteLine("Inserisci il titolo");
+                    string titolo = Console.ReadLine();
+
+                    foreach (Documento item in documenti)
+                    {
+                        if (titolo.ToLower() == item.Titolo.ToLower())
+                        {
+                            Console.WriteLine($"{item.Codice} - {item.Titolo} Anno: {item.Anno}, Stato: {item.Stato}, Scaffale: {item.Scaffale}, Autore: {item.Autore}");
+                            trovato = true;
+                            break;
+                        }
+                    }
+                    if (trovato == false)
+                    {
+                        Console.WriteLine("Nessun elemento trovato");
+                    }
+                    Console.WriteLine("Vuoi cercare altro?");
+                    Console.WriteLine("[1] Si");
+                    Console.WriteLine("[2] No");
+                    cercaAltro = Convert.ToInt32(Console.ReadLine());
+                } while(cercaAltro == 1);
+
+
+            }
 
         }
     }
