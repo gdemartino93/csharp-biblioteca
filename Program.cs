@@ -68,7 +68,7 @@ if (scelta == 1)
 
         foreach (Documento item in documenti)
         {
-            if (item.Titolo == titoloRicerca)
+            if (item.Titolo.ToLower() == titoloRicerca.ToLower())
             {
                 Console.WriteLine("{1}: {0} ", item, item.GetType().ToString());
             }

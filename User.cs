@@ -7,9 +7,9 @@
 
     public Utente(string nome, string cognome, string email, string telefono)
     {
-        this.Nome = nome;
-        this.Cognome = cognome;
-        this.Email = email;
-        this.Telefono = telefono;
+       Nome = nome;
+        Cognome = cognome;
+        Email = email;
+        Telefono = telefono;
     }
 }

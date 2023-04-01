@@ -9,11 +9,10 @@ public class Prestito
     public Documento Documento { get; set; }
     public Prestito(string prestitoDal, string prestitoAl, Documento documento, Utente utente)
     {
-        this.PrestitoDal = prestitoDal;
-        this.PrestitoAl = prestitoAl;
-        this.Documento = documento;
-        this.Utente = utente;
-
+        PrestitoDal = prestitoDal;
+        PrestitoAl = prestitoAl;
+        Utente = utente;
+        Documento = documento;
     }
     public override string ToString()
     {
