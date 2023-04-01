@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace csharp_biblioteca
+﻿public class Libro : Documento
 {
-    internal class Libro : Documento
-    {
-        private int numPagine;
-        public int NumPagine { get; set; }
+    public int numPagine { get; }
 
-        public Libro(string codice,string titolo,int anno,string settore,string stato,string scaffale,string autore, int numPagine ) :base(codice,titolo,anno,settore,stato, scaffale, autore)
-        {
-            NumPagine = numPagine;
-        }
+    public Libro(string codice, string titolo, int anno, string stato, string settore, string scaffale, string autore, int pagine) : base(codice, titolo, anno, stato, settore, scaffale, autore)
+    {
+        numPagine = pagine;
     }
 }

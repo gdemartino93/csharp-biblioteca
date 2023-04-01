@@ -1,33 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using csharp_biblioteca;
 
-namespace csharp_biblioteca
+public class Prestito
 {
-    internal class Prestito
+    public string PrestitoDal { get; }
+    public string PrestitoAl { get; }
+    public Utente Utente { get; set; }
+
+    public Documento Documento { get; set; }
+    public Prestito(string prestitoDal, string prestitoAl, Documento documento, Utente utente)
     {
-        private string prestitoDa;
-        private string prestitoA;
-        private Cliente cliente;
-        private Documento documento;
+        this.PrestitoDal = prestitoDal;
+        this.PrestitoAl = prestitoAl;
+        this.Documento = documento;
+        this.Utente = utente;
 
-        public string PrestitoDa { get; set; }
-        public string PrestitoA { get; set; }
-        public Cliente Cliente { get; set; }
-        public Documento Documento { get; set; }
-
-        public Prestito(string prestitoDa,string prestitoA,Documento documento, Cliente cliente)
-        {
-            PrestitoDa = prestitoDa;
-            PrestitoA = prestitoA;
-            Documento = documento;
-            Cliente = cliente;
-        }
-        public override string ToString()
-        {
-            return "dal: " + PrestitoDa + " al: " + PrestitoA + "In prestito a: " + Cliente.Nome + " " + Cliente.Cognome + " per " + Documento.Titolo;
-        }
+    }
+    public override string ToString()
+    {
+        return "dal " + PrestitoDal + " al " + PrestitoAl + ". Utente: " + Utente.Cognome + " " + Utente.Nome + ". Documento: " + Documento.Titolo;
     }
 }
